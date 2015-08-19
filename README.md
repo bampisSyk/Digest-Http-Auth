@@ -3,21 +3,20 @@ This is a simple nodeJS module that allows to connect to servers with Digest aut
 
 # Simple use case
 
-var digestAuth = require('./digestAuth');
+	var digestAuth = require('./digestAuth');
+	
+	
+		digestAuth.getDataWithAuth(username,password,url,'GET',function(data){	
+			var req = http.get(data, function(res) {
+	
+			 res.on('data', function (chunk) {
+			    console.log('BODY: ' + chunk);
+			    response.send(chunk);
+			 });
+			});
+			req.on('error', function(e) {
+			  console.log('Something went wrong with the request: ' + e.message);
+			});
+			req.end();
+	});
 
-//Response with custom digestAuth library
-	//-----------------------------
-	digestAuth.getDataWithAuth(username,password,url,'GET',function(data){	
-		var req = http.get(data, function(res) {
-
-		 res.on('data', function (chunk) {
-		    console.log('BODY: ' + chunk);
-		    response.send(chunk);
-		 });
-		});
-		req.on('error', function(e) {
-		  console.log('Something went wrong with the request: ' + e.message);
-		});
-		req.end();
-});
-	//-----------------------------
